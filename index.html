@@ -44,26 +44,56 @@
         .search-bar::placeholder { color: rgba(255, 255, 255, 0.6); }
         .search-bar:focus { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.3); }
 
-        /* 🔥 DYNAMIC BANNER CAROUSEL (Image Only) 🔥 */
+        /* 🔥 RED DOT 🔥 */
+        .red-dot { position: absolute; top: -2px; right: -2px; width: 12px; height: 12px; background: #ff453a; border-radius: 50%; border: 2px solid #050505; display: none; z-index: 10; box-shadow: 0 0 8px rgba(255,69,58,0.8); transition: 0.3s;}
+
+        /* 🔥 DYNAMIC BANNER CAROUSEL (3D Border) 🔥 */
         .banner-carousel-container {
-            flex-shrink: 0; margin: 10px 20px 20px 20px; border-radius: 20px; overflow: hidden; position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); aspect-ratio: 16 / 7; 
+            flex-shrink: 0; 
+            margin: 10px 20px 15px 20px; 
+            border-radius: 22px; 
+            overflow: hidden; 
+            position: relative;
             background: rgba(255,255,255,0.05);
+            aspect-ratio: 16 / 7; 
+            
+            /* 3D Glass Border Effect */
+            border-top: 1.5px solid rgba(255, 255, 255, 0.5);
+            border-left: 1.5px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+            border-right: 2px solid rgba(0, 0, 0, 0.6);
+            
+            /* Premium Glow & Inner Shadow */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.1), 0 0 15px rgba(0, 210, 255, 0.2);
         }
         .banner-slides { display: flex; width: 100%; height: 100%; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
         .banner-slide { min-width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;}
         .banner-slide img { width: 100%; height: 100%; object-fit: cover; }
         
         .carousel-indicators { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3;}
-        .indicator { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.4); cursor: pointer; transition: 0.3s; }
+        .indicator { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.4); cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.5);}
         .indicator.active { background: #fff; box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); width: 20px; border-radius: 4px; }
 
-        /* Pill Tabs */
-        .category-tabs { flex-shrink: 0; display: flex; gap: 10px; padding: 0 20px; margin-bottom: 20px; overflow-x: auto; scrollbar-width: none; }
+        /* 🔥 SMALLER Pill Tabs 🔥 */
+        .category-tabs { flex-shrink: 0; display: flex; gap: 8px; padding: 0 20px; margin-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
         .category-tabs::-webkit-scrollbar { display: none; }
-        .tab-pill { padding: 10px 20px; border-radius: 25px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 6px; transition: 0.3s; }
-        .tab-pill svg { width: 14px; height: 14px; fill: rgba(255,255,255,0.6); transition: 0.3s; }
-        .tab-pill.active { background: linear-gradient(135deg, #00d2ff, #3a7bd5); color: #fff; border-color: transparent; box-shadow: 0 5px 15px rgba(0,210,255,0.3); }
+        .tab-pill { 
+            padding: 6px 14px; /* Reduced padding for smaller size */
+            border-radius: 16px; 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            font-size: 11px; /* Smaller Font */
+            font-weight: 700; 
+            color: rgba(255,255,255,0.6); 
+            cursor: pointer; 
+            white-space: nowrap; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+            transition: 0.3s; 
+        }
+        .tab-pill svg { width: 12px; height: 12px; fill: rgba(255,255,255,0.6); transition: 0.3s; }
+        .tab-pill.active { background: linear-gradient(135deg, #00d2ff, #3a7bd5); color: #fff; border-color: transparent; box-shadow: 0 5px 10px rgba(0,210,255,0.3); }
         .tab-pill.active svg { fill: #fff; }
 
         /* Section Header */
@@ -132,7 +162,7 @@
 
         .section-subtitle { font-size: 18px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); transition: 0.3s;}
         
-        /* 🔥 DYNAMIC SCREENSHOTS SCROLL (NO TEXT, PURE IMAGE) 🔥 */
+        /* DYNAMIC SCREENSHOTS SCROLL */
         .screenshots-scroll { display: flex; gap: 15px; overflow-x: auto; scrollbar-width: none; padding-bottom: 10px; margin-bottom: 25px; }
         .screenshots-scroll::-webkit-scrollbar { display: none; }
         .screenshot-box { 
@@ -203,14 +233,26 @@
         .profile-avatar { width: 75px; height: 75px; border-radius: 50%; background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.3); margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; font-size: 35px; transition: 0.3s;}
 
         #customAlert { z-index: 5000; } 
-        #customAlert .modal-box { max-width: 320px; text-align: center; }
-        .alert-heading { font-size: 24px; font-weight: 800; margin-bottom: 12px; background: linear-gradient(135deg, #00d2ff, #3a7bd5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .alert-body { font-size: 15px; color: rgba(255,255,255,0.85); font-weight: 500; line-height: 1.5; margin-bottom: 25px; transition: 0.3s;}
+        #customAlert .modal-box { max-width: 320px; text-align: center; padding: 20px;}
+        .alert-heading { font-size: 20px; font-weight: 800; margin-bottom: 12px; background: linear-gradient(135deg, #00d2ff, #3a7bd5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .alert-body { font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 500; line-height: 1.5; margin-bottom: 25px; transition: 0.3s;}
         .alert-ok-btn { width: 100%; padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .alert-ok-btn:active { transform: scale(0.95); }
 
         #toastMessage { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(50px); opacity: 0; background: #00d2ff; color: #000; padding: 10px 25px; border-radius: 20px; font-weight: 800; z-index: 6000; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none; box-shadow: 0 5px 15px rgba(0,210,255,0.4); }
         #toastMessage.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+        /* Notice Board */
+        .notice-list { display: flex; flex-direction: column; gap: 10px; max-height: 60vh; overflow-y: auto; text-align: left; margin-bottom: 5px; }
+        .notice-list::-webkit-scrollbar { display: none; }
+        .notice-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; cursor: pointer; transition: 0.2s; }
+        .notice-item:active { transform: scale(0.96); background: rgba(255,255,255,0.1); }
+        .notice-icon-wrapper { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); overflow: hidden;}
+        .notice-icon-wrapper svg { width: 24px; height: 24px; }
+        .notice-icon-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .notice-text { display: flex; flex-direction: column; gap: 4px; overflow: hidden; }
+        .notice-text h4 { margin: 0; font-size: 14px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .notice-text p { margin: 0; font-size: 11px; color: #00d2ff; font-weight: 600; }
 
         /* 🔥 LIGHT THEME OVERRIDES 🔥 */
         body.light-theme { background-color: #f5f5f7; color: #1d1d1f; }
@@ -234,6 +276,15 @@
         body.light-theme .nav-item.active { color: #00d2ff; }
         body.light-theme .nav-item.active svg { fill: #00d2ff; }
         
+        /* Banner Light Theme */
+        body.light-theme .banner-carousel-container {
+            border-top: 2px solid rgba(255, 255, 255, 0.8);
+            border-left: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+            border-right: 2px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1), inset 0 0 20px rgba(255,255,255,0.5);
+        }
+
         body.light-theme .app-details-fullscreen { background: #f5f5f7; }
         body.light-theme .details-header-bar { background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, transparent 100%); border-bottom: 1px solid rgba(0,0,0,0.05);}
         body.light-theme .details-header-title { color: #1d1d1f; }
@@ -265,6 +316,10 @@
         body.light-theme .alert-body { color: #444; }
         body.light-theme .alert-ok-btn { color: #fff; background: linear-gradient(135deg, #00d2ff, #3a7bd5); border: none;}
         body.light-theme #displayUserEmail { color: #666 !important; }
+
+        body.light-theme .notice-item { background: rgba(255,255,255,0.8); border-color: rgba(0,0,0,0.1); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        body.light-theme .notice-text h4 { color: #1d1d1f; }
+        body.light-theme .notice-icon-wrapper { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -287,7 +342,10 @@
         
         <!-- HEADER -->
         <div class="top-header">
-            <div class="icon-btn" onclick="openMenuModal()"><svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></div>
+            <div class="icon-btn" onclick="openMenuModal()" style="position: relative;">
+                <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                <div class="red-dot" id="menuRedDot"></div>
+            </div>
             <input type="text" id="globalSearch" class="search-bar" placeholder="Search apps, files..." autocomplete="off">
             <div class="icon-btn" onclick="openProfileModal()"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
         </div>
@@ -308,10 +366,10 @@
                 <svg viewBox="0 0 24 24"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg> All
             </div>
             <div id="tab-app" class="tab-pill" onclick="filterByCategory('app')">
-                <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.75-4H7.25V4h9.5v14z"/></svg> Android Apk
+                <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.75-4H7.25V4h9.5v14z"/></svg> Apps
             </div>
             <div id="tab-file" class="tab-pill" onclick="filterByCategory('file')">
-                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg> Source code
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg> Files
             </div>
         </div>
 
@@ -407,9 +465,15 @@
                 <!-- 🔥 DARK/LIGHT THEME TOGGLE 🔥 -->
                 <div class="menu-item" onclick="toggleTheme()"><div class="menu-icon-glass">🌓</div><span id="themeText">Light Mode</span></div>
                 
+                <!-- 🔥 RED DOT ON NOTICE BOARD 🔥 -->
+                <div class="menu-item" onclick="showNoticeBoard()">
+                    <div class="menu-icon-glass"><svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg></div>
+                    Notice Board
+                    <div class="red-dot" id="noticeRowDot" style="position: relative; margin-left: auto;"></div>
+                </div>
+
                 <div class="menu-item" onclick="showAboutAlert()"><div class="menu-icon-glass"><svg viewBox="0 0 24 24"><path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/></svg></div>About App</div>
                 <div class="menu-item" onclick="showUpdateAlert()"><div class="menu-icon-glass"><svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg></div>Check for Updates</div>
-                <div class="menu-item" onclick="showNoticeAlert()"><div class="menu-icon-glass"><svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg></div>Notice Board</div>
             </div>
         </div>
 
@@ -493,7 +557,7 @@
         window.isUserLoggedIn = false; window.currentPasswordToCopy = "";
         window.currentCategory = 'all';
 
-        // 🔥 THEME TOGGLE LOGIC 🔥
+        // THEME LOGIC
         document.addEventListener("DOMContentLoaded", () => {
             if(localStorage.getItem('theme') === 'light') {
                 document.body.classList.add('light-theme');
@@ -539,7 +603,6 @@
             }, 4000);
         }
 
-        // NO TEXT IN BANNER (Image Only)
         function renderBanners() {
             const container = document.getElementById('mainBannerContainer');
             const slidesContainer = document.getElementById('bannerSlides');
@@ -570,7 +633,6 @@
             window.startCarousel();
         }
 
-        // FULL SCREEN IMAGE VIEWER
         window.openImageViewer = function(src) {
             document.getElementById('fullScreenImage').src = src;
             document.getElementById('imageViewerModal').classList.add('show');
@@ -599,7 +661,8 @@
             window.bannerData.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
             
             renderBanners();
-            renderData(); 
+            renderData(document.getElementById('globalSearch').value); 
+            checkNotifications(); 
             
             const loader = document.getElementById('loaderOverlay');
             if(loader) { loader.classList.add('hidden'); }
@@ -651,7 +714,8 @@
             const container = document.getElementById('mainList');
             container.innerHTML = '';
             
-            let filtered = window.allItems.filter(item => (item.name || "").toLowerCase().includes(query.toLowerCase()));
+            let filtered = window.allItems.filter(item => item.visibility !== 'private' && (item.name || "").toLowerCase().includes(query.toLowerCase()));
+            
             if(window.currentCategory !== 'all') {
                 filtered = filtered.filter(item => item.category === window.currentCategory);
             }
@@ -678,6 +742,27 @@
         }
 
         document.getElementById('globalSearch').addEventListener('input', (e) => { renderData(e.target.value); });
+
+        window.checkNotifications = function() {
+            let lastSeen = localStorage.getItem('lastSeenNoticeTime') || 0;
+            let hasNew = false;
+            window.allItems.forEach(item => {
+                if(item.visibility !== 'private') {
+                    let time = item.updatedAt || item.timestamp || 0;
+                    if(time > lastSeen) hasNew = true;
+                }
+            });
+            
+            const menuDot = document.getElementById('menuRedDot');
+            const noticeDot = document.getElementById('noticeRowDot');
+            if(hasNew) {
+                if(menuDot) menuDot.style.display = 'block';
+                if(noticeDot) noticeDot.style.display = 'block';
+            } else {
+                if(menuDot) menuDot.style.display = 'none';
+                if(noticeDot) noticeDot.style.display = 'none';
+            }
+        }
 
         window.updateDownloadCount = function(itemId) {
             try {
@@ -710,7 +795,6 @@
             const defaultAbout = isApp ? `Premium secure application optimized for your device.` : `High quality secure file/document stored safely in the cloud.`;
             document.getElementById('detailAbout').innerText = item.about ? item.about : defaultAbout;
 
-            // 🔥 DYNAMIC SCREENSHOTS LOGIC (UP TO 10, NO TEXT) 🔥
             const screensContainer = document.getElementById('detailScreenshots');
             screensContainer.innerHTML = '';
             let hasScreenshots = false;
@@ -786,9 +870,42 @@
         window.showCustomAlert = function(title, message) { closeModals(); document.getElementById('alertTitle').innerHTML = title; document.getElementById('alertMessage').innerHTML = message; document.getElementById('customAlert').classList.add('show'); }
         window.closeCustomAlert = function() { document.getElementById('customAlert').classList.remove('show'); }
 
+        // 🔥 TOP 3 LATEST ITEMS IN NOTICE BOARD 🔥
+        window.showNoticeBoard = function() {
+            localStorage.setItem('lastSeenNoticeTime', Date.now());
+            checkNotifications();
+            closeModals();
+
+            let html = '<div class="notice-list">';
+            let publicItems = window.allItems.filter(i => i.visibility !== 'private');
+            
+            if(publicItems.length === 0) {
+                html += '<div style="text-align:center; color:rgba(255,255,255,0.5); font-size: 13px; padding: 20px;">No updates yet</div>';
+            } else {
+                // Only Top 3 Items!
+                publicItems.slice(0, 3).forEach(item => {
+                    let iconSrc = item.icon ? `<img class="notice-icon-wrapper" src="${item.icon}">` : `<div class="notice-icon-wrapper">${item.category === 'app' ? defaultAppIcon : defaultFileIcon}</div>`;
+                    let timeStr = formatDisplayDate(item.updatedAt || item.timestamp);
+                    html += `
+                        <div class="notice-item" onclick="openAppDetails('${item.id}'); closeCustomAlert();">
+                            ${iconSrc}
+                            <div class="notice-text">
+                                <h4>${item.name}</h4>
+                                <p>New update available • ${timeStr}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            html += '</div>';
+
+            document.getElementById('alertTitle').innerHTML = 'Notice Board';
+            document.getElementById('alertMessage').innerHTML = (window.globalSettings.notice ? `<p style="margin-bottom:15px; font-size:13px; color:#00d2ff; font-weight:700;">📢 ${window.globalSettings.notice}</p>` : '') + html;
+            document.getElementById('customAlert').classList.add('show');
+        }
+
         window.showAboutAlert = function() { showCustomAlert('About App', window.globalSettings.about || "Version 1.0.0<br><br>Developed with extreme precision and premium UI by RVG."); }
         window.showUpdateAlert = function() { showCustomAlert('Check for Updates', window.globalSettings.update || "Checking server...<br><br>You are currently using the latest version of the app."); }
-        window.showNoticeAlert = function() { showCustomAlert('Notice Board', window.globalSettings.notice || "Welcome to My Cloud Store.<br><br>No new notifications at this moment. Stay tuned!"); }
 
         window.switchAuthTab = function(tab) {
             document.getElementById('form-login').classList.remove('active'); document.getElementById('form-signup').classList.remove('active'); document.getElementById('form-forgot').classList.remove('active');
