@@ -47,50 +47,29 @@
         /* 🔥 RED DOT 🔥 */
         .red-dot { position: absolute; top: -2px; right: -2px; width: 12px; height: 12px; background: #ff453a; border-radius: 50%; border: 2px solid #050505; display: none; z-index: 10; box-shadow: 0 0 8px rgba(255,69,58,0.8); transition: 0.3s;}
 
-        /* 🔥 DYNAMIC BANNER CAROUSEL (3D Border) 🔥 */
+        /* DYNAMIC BANNER CAROUSEL */
         .banner-carousel-container {
-            flex-shrink: 0; 
-            margin: 10px 20px 15px 20px; 
-            border-radius: 22px; 
-            overflow: hidden; 
-            position: relative;
-            background: rgba(255,255,255,0.05);
-            aspect-ratio: 16 / 7; 
-            
-            /* 3D Glass Border Effect */
-            border-top: 1.5px solid rgba(255, 255, 255, 0.5);
-            border-left: 1.5px solid rgba(255, 255, 255, 0.3);
-            border-bottom: 2px solid rgba(0, 0, 0, 0.8);
-            border-right: 2px solid rgba(0, 0, 0, 0.6);
-            
-            /* Premium Glow & Inner Shadow */
+            flex-shrink: 0; margin: 10px 20px 15px 20px; border-radius: 22px; overflow: hidden; position: relative;
+            background: rgba(255,255,255,0.05); aspect-ratio: 16 / 7; 
+            border-top: 1.5px solid rgba(255, 255, 255, 0.5); border-left: 1.5px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.8); border-right: 2px solid rgba(0, 0, 0, 0.6);
             box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.1), 0 0 15px rgba(0, 210, 255, 0.2);
         }
         .banner-slides { display: flex; width: 100%; height: 100%; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
         .banner-slide { min-width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;}
         .banner-slide img { width: 100%; height: 100%; object-fit: cover; }
-        
         .carousel-indicators { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3;}
         .indicator { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.4); cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.5);}
         .indicator.active { background: #fff; box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); width: 20px; border-radius: 4px; }
 
-        /* 🔥 SMALLER Pill Tabs 🔥 */
+        /* 🔥 SMALLER Pill Tabs (DYNAMIC CATEGORIES SUPPORT) 🔥 */
         .category-tabs { flex-shrink: 0; display: flex; gap: 8px; padding: 0 20px; margin-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
         .category-tabs::-webkit-scrollbar { display: none; }
         .tab-pill { 
-            padding: 6px 14px; /* Reduced padding for smaller size */
-            border-radius: 16px; 
-            background: rgba(255,255,255,0.05); 
-            border: 1px solid rgba(255,255,255,0.1); 
-            font-size: 11px; /* Smaller Font */
-            font-weight: 700; 
-            color: rgba(255,255,255,0.6); 
-            cursor: pointer; 
-            white-space: nowrap; 
-            display: flex; 
-            align-items: center; 
-            gap: 5px; 
-            transition: 0.3s; 
+            padding: 6px 14px; border-radius: 16px; background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.1); font-size: 11px; font-weight: 700; 
+            color: rgba(255,255,255,0.6); cursor: pointer; white-space: nowrap; 
+            display: flex; align-items: center; gap: 5px; transition: 0.3s; 
         }
         .tab-pill svg { width: 12px; height: 12px; fill: rgba(255,255,255,0.6); transition: 0.3s; }
         .tab-pill.active { background: linear-gradient(135deg, #00d2ff, #3a7bd5); color: #fff; border-color: transparent; box-shadow: 0 5px 10px rgba(0,210,255,0.3); }
@@ -104,7 +83,6 @@
         /* 4-COLUMN GRID */
         .grid-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px 10px; padding: 0 20px 140px 20px; }
         .grid-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; position: relative; cursor: pointer; }
-        
         .item-icon { 
             width: 70px; height: 70px; border-radius: 24%; object-fit: cover; 
             background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.2) 100%);
@@ -115,7 +93,6 @@
             margin-bottom: 12px; display: flex; align-items: center; justify-content: center; 
             color: rgba(255,255,255,0.9); font-size: 30px; transition: transform 0.2s, box-shadow 0.2s, background 0.3s, border-color 0.3s; position: relative; overflow: hidden; 
         }
-
         .file-shape { border-radius: 10px 28px 10px 10px !important; }
         .item-icon-inner { filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.6)); width: 50%; height: 50%; border-radius: 8px; object-fit: cover; }
         .item-icon::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.7), transparent); transform: skewX(-25deg); animation: shine 4.5s infinite; z-index: 10; pointer-events: none; }
@@ -169,7 +146,7 @@
             min-width: 130px; height: 200px; border-radius: 16px; 
             background: rgba(255,255,255,0.05); 
             border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; font-size: 30px; gap: 10px; 
+            align-items: center; justify-content: center; gap: 10px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; position: relative; overflow: hidden;
             transition: transform 0.2s, background 0.3s, border-color 0.3s;
         }
@@ -360,17 +337,9 @@
             </div>
         </div>
 
-        <!-- CATEGORY PILL TABS -->
-        <div class="category-tabs">
-            <div id="tab-all" class="tab-pill active" onclick="filterByCategory('all')">
-                <svg viewBox="0 0 24 24"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg> All
-            </div>
-            <div id="tab-app" class="tab-pill" onclick="filterByCategory('app')">
-                <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.75-4H7.25V4h9.5v14z"/></svg> Apps
-            </div>
-            <div id="tab-file" class="tab-pill" onclick="filterByCategory('file')">
-                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg> Files
-            </div>
+        <!-- 🔥 DYNAMIC CATEGORY PILL TABS 🔥 -->
+        <div class="category-tabs" id="dynamicCategoryTabs">
+            <!-- Tabs will be injected here -->
         </div>
 
         <!-- SECTION HEADER -->
@@ -553,7 +522,7 @@
         const db = getFirestore(app);
         const auth = getAuth(app);
         
-        window.allItems = []; window.bannerData = []; window.globalSettings = { about: '', update: '', notice: '' };
+        window.allItems = []; window.bannerData = []; window.categoryData = []; window.globalSettings = { about: '', update: '', notice: '' };
         window.isUserLoggedIn = false; window.currentPasswordToCopy = "";
         window.currentCategory = 'all';
 
@@ -645,21 +614,62 @@
         const defaultAppIcon = `<svg viewBox="0 0 24 24" width="45" height="45" fill="rgba(255,255,255,0.8)"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.75-4H7.25V4h9.5v14z"/></svg>`;
         const defaultFileIcon = `<svg viewBox="0 0 24 24" width="45" height="45" fill="rgba(255,255,255,0.8)"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>`;
 
+        // 🔥 DYNAMIC CATEGORIES RENDERER FOR TABS 🔥
+        window.renderCategoryTabs = function() {
+            const tabsContainer = document.getElementById('dynamicCategoryTabs');
+            let html = `
+                <div id="tab-all" class="tab-pill active" onclick="filterByCategory('all')">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg> All
+                </div>
+                <div id="tab-app" class="tab-pill" onclick="filterByCategory('app')">
+                    <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.75-4H7.25V4h9.5v14z"/></svg> Apps
+                </div>
+                <div id="tab-file" class="tab-pill" onclick="filterByCategory('file')">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg> Files
+                </div>
+            `;
+            
+            window.categoryData.forEach(cat => {
+                let safeId = 'tab-' + cat.name.replace(/\s+/g, '-').toLowerCase();
+                html += `
+                <div id="${safeId}" class="tab-pill" onclick="filterByCategory('${cat.name}')">
+                    📁 ${cat.name}
+                </div>
+                `;
+            });
+            
+            tabsContainer.innerHTML = html;
+            
+            // Reapply active class if needed
+            document.querySelectorAll('.tab-pill').forEach(el => el.classList.remove('active'));
+            let activeTabId = window.currentCategory === 'all' ? 'tab-all' : 
+                              window.currentCategory === 'app' ? 'tab-app' : 
+                              window.currentCategory === 'file' ? 'tab-file' : 
+                              'tab-' + window.currentCategory.replace(/\s+/g, '-').toLowerCase();
+            
+            let activeEl = document.getElementById(activeTabId);
+            if(activeEl) activeEl.classList.add('active');
+        }
+
         onSnapshot(doc(db, "settings", "global"), (docSnap) => { if(docSnap.exists()) window.globalSettings = docSnap.data(); });
 
         onSnapshot(collection(db, "storeItems"), (snapshot) => {
-            window.allItems = []; window.bannerData = [];
+            window.allItems = []; window.bannerData = []; window.categoryData = [];
             snapshot.forEach((doc) => { 
                 const data = doc.data();
                 if(data.type === 'banner') {
                     window.bannerData.push({ id: doc.id, ...data });
+                } else if(data.type === 'category') {
+                    window.categoryData.push({ id: doc.id, ...data });
                 } else {
                     window.allItems.push({ id: doc.id, ...data }); 
                 }
             });
             window.allItems.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
             window.bannerData.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
+            window.categoryData.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
             
+            renderCategoryTabs();
             renderBanners();
             renderData(document.getElementById('globalSearch').value); 
             checkNotifications(); 
@@ -695,12 +705,19 @@
             window.currentCategory = cat;
             
             document.querySelectorAll('.tab-pill').forEach(el => el.classList.remove('active'));
-            const pill = document.getElementById('tab-' + cat);
+            let activeTabId = cat === 'all' ? 'tab-all' : 
+                              cat === 'app' ? 'tab-app' : 
+                              cat === 'file' ? 'tab-file' : 
+                              'tab-' + cat.replace(/\s+/g, '-').toLowerCase();
+            const pill = document.getElementById(activeTabId);
             if(pill) pill.classList.add('active');
 
+            // Sync Bottom Nav (Only for System Cats)
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            const nav = document.getElementById('nav-' + cat);
-            if(nav) nav.classList.add('active');
+            if(cat === 'all' || cat === 'app' || cat === 'file') {
+                const nav = document.getElementById('nav-' + cat);
+                if(nav) nav.classList.add('active');
+            }
 
             renderData(document.getElementById('globalSearch').value);
         }
@@ -781,7 +798,8 @@
             document.getElementById('dHeaderTitle').innerText = item.name || "Unnamed Item";
             document.getElementById('detailTitle').innerText = item.name || "Unnamed Item";
             
-            document.getElementById('detailCatPill').innerText = isApp ? 'App Project' : 'Website/Source Code';
+            let displayCat = item.category === 'app' ? 'App Project' : item.category === 'file' ? 'Website/Source Code' : item.category;
+            document.getElementById('detailCatPill').innerText = displayCat;
 
             const defaultIcon = isApp ? defaultAppIcon : defaultFileIcon;
             const iconHtml = item.icon ? `<img src="${item.icon}">` : defaultIcon;
@@ -870,7 +888,6 @@
         window.showCustomAlert = function(title, message) { closeModals(); document.getElementById('alertTitle').innerHTML = title; document.getElementById('alertMessage').innerHTML = message; document.getElementById('customAlert').classList.add('show'); }
         window.closeCustomAlert = function() { document.getElementById('customAlert').classList.remove('show'); }
 
-        // 🔥 TOP 3 LATEST ITEMS IN NOTICE BOARD 🔥
         window.showNoticeBoard = function() {
             localStorage.setItem('lastSeenNoticeTime', Date.now());
             checkNotifications();
@@ -882,7 +899,6 @@
             if(publicItems.length === 0) {
                 html += '<div style="text-align:center; color:rgba(255,255,255,0.5); font-size: 13px; padding: 20px;">No updates yet</div>';
             } else {
-                // Only Top 3 Items!
                 publicItems.slice(0, 3).forEach(item => {
                     let iconSrc = item.icon ? `<img class="notice-icon-wrapper" src="${item.icon}">` : `<div class="notice-icon-wrapper">${item.category === 'app' ? defaultAppIcon : defaultFileIcon}</div>`;
                     let timeStr = formatDisplayDate(item.updatedAt || item.timestamp);
