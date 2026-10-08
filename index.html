@@ -7,9 +7,22 @@
     <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* TEXT UNSELECTABLE GLOBALLY */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; }
+        /* TEXT UNSELECTABLE GLOBALLY & LONG-PRESS DISABLED */
+        * { 
+            margin: 0; padding: 0; box-sizing: border-box; 
+            font-family: 'Inter', sans-serif; 
+            -webkit-tap-highlight-color: transparent; 
+            -webkit-user-select: none; user-select: none; 
+            -webkit-touch-callout: none; /* Disables long-press popup */
+        }
         input { -webkit-user-select: text; user-select: text; }
+
+        /* BLOCK IMAGE DOWNLOAD POPUP GLOBALLY */
+        img {
+            pointer-events: none; /* Makes image invisible to clicks/long-press */
+            -webkit-user-drag: none; /* Stops image dragging */
+            -webkit-touch-callout: none;
+        }
 
         html { height: -webkit-fill-available; }
         
@@ -47,7 +60,7 @@
         /* 🔥 RED DOT 🔥 */
         .red-dot { position: absolute; top: -2px; right: -2px; width: 12px; height: 12px; background: #ff453a; border-radius: 50%; border: 2px solid #050505; display: none; z-index: 10; box-shadow: 0 0 8px rgba(255,69,58,0.8); transition: 0.3s;}
 
-        /* 🔥 DYNAMIC BANNER CAROUSEL 🔥 */
+        /* DYNAMIC BANNER CAROUSEL */
         .banner-carousel-container {
             flex-shrink: 0; margin: 10px 20px 15px 20px; border-radius: 22px; overflow: hidden; position: relative;
             background: rgba(255,255,255,0.05); aspect-ratio: 16 / 7; 
@@ -63,7 +76,7 @@
         .indicator { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.4); cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.5);}
         .indicator.active { background: #fff; box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); width: 20px; border-radius: 4px; }
 
-        /* 🔥 CATEGORY PILL TABS 🔥 */
+        /* 🔥 DYNAMIC CATEGORY PILL TABS 🔥 */
         .category-tabs { flex-shrink: 0; display: flex; gap: 8px; padding: 0 20px; margin-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
         .category-tabs::-webkit-scrollbar { display: none; }
         .tab-pill { 
@@ -147,7 +160,7 @@
             min-width: 130px; height: 200px; border-radius: 16px; 
             background: rgba(255,255,255,0.05); 
             border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; font-size: 30px; gap: 10px; 
+            align-items: center; justify-content: center; gap: 10px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; position: relative; overflow: hidden;
             transition: transform 0.2s, background 0.3s, border-color 0.3s;
         }
@@ -300,7 +313,7 @@
         body.light-theme .notice-icon-wrapper { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> <!-- Block Global Right-Click / Long Press -->
 
     <!-- 🌟 LOADER OVERLAY 🌟 -->
     <div id="loaderOverlay" class="loader-overlay">
@@ -311,7 +324,7 @@
     <!-- 🔥 FULL SCREEN IMAGE VIEWER 🔥 -->
     <div id="imageViewerModal" class="image-viewer-overlay" onclick="closeImageViewer()">
         <div class="close-viewer-btn">✕</div>
-        <img id="fullScreenImage" src="" alt="Full Screen Screenshot" onclick="event.stopPropagation()">
+        <img id="fullScreenImage" src="" alt="Full Screen Screenshot" style="pointer-events: auto;">
     </div>
 
     <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
@@ -331,7 +344,7 @@
         <!-- 🔥 DYNAMIC BANNER CAROUSEL 🔥 -->
         <div class="banner-carousel-container" id="mainBannerContainer" style="display: none;">
             <div class="banner-slides" id="bannerSlides">
-                <!-- Banners will be injected here (Images Only) -->
+                <!-- Banners will be injected here -->
             </div>
             <div class="carousel-indicators" id="carouselIndicators">
                 <!-- Indicators will be injected here -->
