@@ -47,7 +47,7 @@
         /* 🔥 RED DOT 🔥 */
         .red-dot { position: absolute; top: -2px; right: -2px; width: 12px; height: 12px; background: #ff453a; border-radius: 50%; border: 2px solid #050505; display: none; z-index: 10; box-shadow: 0 0 8px rgba(255,69,58,0.8); transition: 0.3s;}
 
-        /* DYNAMIC BANNER CAROUSEL */
+        /* 🔥 DYNAMIC BANNER CAROUSEL 🔥 */
         .banner-carousel-container {
             flex-shrink: 0; margin: 10px 20px 15px 20px; border-radius: 22px; overflow: hidden; position: relative;
             background: rgba(255,255,255,0.05); aspect-ratio: 16 / 7; 
@@ -58,11 +58,12 @@
         .banner-slides { display: flex; width: 100%; height: 100%; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
         .banner-slide { min-width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;}
         .banner-slide img { width: 100%; height: 100%; object-fit: cover; }
+        
         .carousel-indicators { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3;}
         .indicator { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.4); cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.5);}
         .indicator.active { background: #fff; box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); width: 20px; border-radius: 4px; }
 
-        /* 🔥 SMALLER Pill Tabs (DYNAMIC CATEGORIES SUPPORT) 🔥 */
+        /* 🔥 CATEGORY PILL TABS 🔥 */
         .category-tabs { flex-shrink: 0; display: flex; gap: 8px; padding: 0 20px; margin-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
         .category-tabs::-webkit-scrollbar { display: none; }
         .tab-pill { 
@@ -146,7 +147,7 @@
             min-width: 130px; height: 200px; border-radius: 16px; 
             background: rgba(255,255,255,0.05); 
             border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; gap: 10px; 
+            align-items: center; justify-content: center; font-size: 30px; gap: 10px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; position: relative; overflow: hidden;
             transition: transform 0.2s, background 0.3s, border-color 0.3s;
         }
@@ -339,7 +340,7 @@
 
         <!-- 🔥 DYNAMIC CATEGORY PILL TABS 🔥 -->
         <div class="category-tabs" id="dynamicCategoryTabs">
-            <!-- Tabs will be injected here -->
+            <!-- Tabs will be injected here via JavaScript -->
         </div>
 
         <!-- SECTION HEADER -->
@@ -589,8 +590,10 @@
             window.totalSlides = window.bannerData.length;
 
             window.bannerData.forEach((ban, index) => {
+                let clickableAttr = ban.link ? `onclick="window.open('${ban.link}', '_blank')"` : '';
+                let cursorStyle = ban.link ? 'cursor: pointer;' : '';
                 slidesContainer.innerHTML += `
-                    <div class="banner-slide">
+                    <div class="banner-slide" style="${cursorStyle}" ${clickableAttr}>
                         <img src="${ban.image}" alt="Banner ${index+1}">
                     </div>
                 `;
@@ -614,7 +617,7 @@
         const defaultAppIcon = `<svg viewBox="0 0 24 24" width="45" height="45" fill="rgba(255,255,255,0.8)"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.75-4H7.25V4h9.5v14z"/></svg>`;
         const defaultFileIcon = `<svg viewBox="0 0 24 24" width="45" height="45" fill="rgba(255,255,255,0.8)"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>`;
 
-        // 🔥 DYNAMIC CATEGORIES RENDERER FOR TABS 🔥
+        // 🔥 DYNAMIC CATEGORY PILL TABS RENDERER 🔥
         window.renderCategoryTabs = function() {
             const tabsContainer = document.getElementById('dynamicCategoryTabs');
             let html = `
@@ -640,7 +643,7 @@
             
             tabsContainer.innerHTML = html;
             
-            // Reapply active class if needed
+            // Reapply active class based on current state
             document.querySelectorAll('.tab-pill').forEach(el => el.classList.remove('active'));
             let activeTabId = window.currentCategory === 'all' ? 'tab-all' : 
                               window.currentCategory === 'app' ? 'tab-app' : 
@@ -665,7 +668,7 @@
                     window.allItems.push({ id: doc.id, ...data }); 
                 }
             });
-            window.allItems.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
+            window.allItems.sort((a,b) => (b.updatedAt || b.timestamp || 0) - (a.updatedAt || a.timestamp || 0));
             window.bannerData.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
             window.categoryData.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
             
@@ -704,6 +707,7 @@
         window.filterByCategory = function(cat) {
             window.currentCategory = cat;
             
+            // Sync Top Tabs
             document.querySelectorAll('.tab-pill').forEach(el => el.classList.remove('active'));
             let activeTabId = cat === 'all' ? 'tab-all' : 
                               cat === 'app' ? 'tab-app' : 
@@ -712,7 +716,7 @@
             const pill = document.getElementById(activeTabId);
             if(pill) pill.classList.add('active');
 
-            // Sync Bottom Nav (Only for System Cats)
+            // Sync Bottom Nav (Unselect if custom category)
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             if(cat === 'all' || cat === 'app' || cat === 'file') {
                 const nav = document.getElementById('nav-' + cat);
@@ -727,6 +731,7 @@
             return new Date(timestamp).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
         }
 
+        // 🔥 SMART FILTER SYSTEM (DYNAMIC CATEGORIES) 🔥
         function renderData(query = '') {
             const container = document.getElementById('mainList');
             container.innerHTML = '';
@@ -734,13 +739,19 @@
             let filtered = window.allItems.filter(item => item.visibility !== 'private' && (item.name || "").toLowerCase().includes(query.toLowerCase()));
             
             if(window.currentCategory !== 'all') {
-                filtered = filtered.filter(item => item.category === window.currentCategory);
+                if(window.currentCategory === 'app') {
+                    filtered = filtered.filter(item => item.category === 'app' || item.category === 'Apps');
+                } else if(window.currentCategory === 'file') {
+                    filtered = filtered.filter(item => item.category === 'file' || item.category === 'Files');
+                } else {
+                    filtered = filtered.filter(item => item.category === window.currentCategory);
+                }
             }
             
             document.getElementById('itemCountLabel').innerText = filtered.length + (filtered.length === 1 ? " project" : " projects");
 
             filtered.forEach(item => {
-                const isApp = item.category === 'app';
+                const isApp = item.category === 'app' || item.category === 'Apps';
                 const shapeClass = isApp ? '' : 'file-shape';
                 const iconHtml = item.icon ? `<img src="${item.icon}" class="item-icon-inner">` : `<span class="item-icon-inner" style="display:flex;align-items:center;justify-content:center; width:100%; height:100%;">${isApp ? defaultAppIcon : defaultFileIcon}</span>`;
                 
@@ -792,7 +803,7 @@
             const item = window.allItems.find(i => i.id === id);
             if(!item) return;
 
-            const isApp = item.category === 'app';
+            const isApp = item.category === 'app' || item.category === 'Apps';
             const isPrivate = item.visibility === 'private';
             
             document.getElementById('dHeaderTitle').innerText = item.name || "Unnamed Item";
@@ -900,7 +911,8 @@
                 html += '<div style="text-align:center; color:rgba(255,255,255,0.5); font-size: 13px; padding: 20px;">No updates yet</div>';
             } else {
                 publicItems.slice(0, 3).forEach(item => {
-                    let iconSrc = item.icon ? `<img class="notice-icon-wrapper" src="${item.icon}">` : `<div class="notice-icon-wrapper">${item.category === 'app' ? defaultAppIcon : defaultFileIcon}</div>`;
+                    const isApp = item.category === 'app' || item.category === 'Apps';
+                    let iconSrc = item.icon ? `<img class="notice-icon-wrapper" src="${item.icon}">` : `<div class="notice-icon-wrapper">${isApp ? defaultAppIcon : defaultFileIcon}</div>`;
                     let timeStr = formatDisplayDate(item.updatedAt || item.timestamp);
                     html += `
                         <div class="notice-item" onclick="openAppDetails('${item.id}'); closeCustomAlert();">
